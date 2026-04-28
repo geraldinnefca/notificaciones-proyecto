@@ -1,13 +1,13 @@
-package cl.sda1085;
+package cl.sda1085.notificaciones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NotificacionesProyectoApplication {
+public class NotificacionesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NotificacionesProyectoApplication.class, args);
+		SpringApplication.run(NotificacionesApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package cl.sda1085;
+package cl.sda1085.notificaciones;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

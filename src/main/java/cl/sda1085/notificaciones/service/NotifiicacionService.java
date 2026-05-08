@@ -71,7 +71,7 @@ public class NotifiicacionService {
 
     //CRUD personalizado
 
-    //obtener notificación por usuario
+    //Obtener notificación por usuario
     public List<NotificacionResponseDTO> obtenerPorUsuario(Long idUsuario) {
         return notificacionRepository.findByIdUsuario(idUsuario)
                 .stream()
@@ -79,7 +79,7 @@ public class NotifiicacionService {
                 .collect(Collectors.toList());
     }
 
-    //marcar como notificación leída
+    //Marcar como notificación leída
     public Optional<NotificacionResponseDTO> marcarComoLeida(Long id, NotificacionRequestDTO dto) {
         return notificacionRepository.findById(id)
                 .map(notificacion -> {
@@ -88,7 +88,7 @@ public class NotifiicacionService {
                 });
     }
 
-    //obtener notificaciones no leidas
+    //Obtener notificaciones no leidas
     public  List<NotificacionResponseDTO> obtenerNoLeidas() {
         return notificacionRepository.findByLeidoFalse()
                 .stream()
@@ -96,7 +96,7 @@ public class NotifiicacionService {
                 .collect(Collectors.toList());
     }
 
-    //obtener notificaciones no leidas por usuario
+    //Obtener notificaciones no leidas por usuario
     public List<NotificacionResponseDTO> obtenerNoLeidasPorUsuario (Long idUsuario) {
         return notificacionRepository.findByIdUsuarioAndLeidoFalse(idUsuario)
                 .stream()

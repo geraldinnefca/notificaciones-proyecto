@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface NotificacionRepository extends JpaRepository <Notificacion, Long> {
 
-    //obtener todas las notificaciones de un usuario
+    //Obtener todas las notificaciones de un usuario
     List<Notificacion> findByIdUsuario (Long idUsuario);
 
-    //obtener todas las no leídas
+    //Obtener todas las no leídas
     List <Notificacion> findByLeidoFalse();
 
-    //obtener las no leídas de un usuario específico
+    //Obtener las no leídas de un usuario específico
     List<Notificacion> findByIdUsuarioAndLeidoFalse(Long idUsuario);
 
 }

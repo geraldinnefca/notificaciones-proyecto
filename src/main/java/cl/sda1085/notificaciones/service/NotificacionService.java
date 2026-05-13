@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 
-public class NotifiicacionService {
+public class NotificacionService {
 
     private final NotificacionRepository notificacionRepository;
 
@@ -97,11 +97,11 @@ public class NotifiicacionService {
 
     //Marcar como notificación leída
     @Transactional
-    public Optional<NotificacionResponseDTO> marcarComoLeida(Long id, NotificacionRequestDTO dto) {
+    public Optional<NotificacionResponseDTO> marcarComoLeida(Long id) {
         log.info("Modificando estado a LEÍDO para la notificación ID: {}", id);
         return notificacionRepository.findById(id)
                 .map(notificacion -> {
-                    notificacion.setLeido(true);
+                    notificacion.setLeido(true); //Cambio de estado de notificación
                     return convertirADTO(notificacionRepository.save(notificacion));
                 });
     }

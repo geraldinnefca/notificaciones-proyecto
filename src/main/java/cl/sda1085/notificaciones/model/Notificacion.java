@@ -35,8 +35,10 @@ public class Notificacion {
         @Column(nullable = false)
         private LocalDateTime fechaCreacion;
 
+        //Se ejecuta automáticamente antes de insertar una nueva notificación, para que se guarde con fecha actual y marcada como "no leída"
         @PrePersist
         protected void onCreate() {
-            this.fechaCreacion = LocalDateTime.now();
+                this.fechaCreacion = LocalDateTime.now();
+                this.leido = false;
         }
     }

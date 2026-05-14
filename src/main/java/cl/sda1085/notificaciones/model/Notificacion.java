@@ -13,26 +13,25 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notificaciones")
-
 public class Notificacion {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(nullable = false)
+        @Column(name = "id_usuario", nullable = false)  //Mapeo exacto al diagrama
         private Long idUsuario;
 
         @Column(nullable = false, length = 50)
-        private String tipo; // "subasta", "pago", "envío"
+        private String tipo;  //Se mantiene por la lógica de los últimos commits
 
-        @Column(nullable = false)
+        @Column(nullable = false, length = 255)
         private String mensaje;
 
-        @Column(nullable = false)
+        @Column(name = "visto", nullable = false)  //Mapeo a 'visto' del diagrama
         private boolean leido = false;
 
-        @Column(nullable = false)
+        @Column(name = "fecha", nullable = false)  //Mapeo a 'fecha' del diagrama
         private LocalDateTime fechaCreacion;
 
         //Se ejecuta automáticamente antes de insertar una nueva notificación, para que se guarde con fecha actual y marcada como "no leída"
@@ -41,4 +40,4 @@ public class Notificacion {
                 this.fechaCreacion = LocalDateTime.now();
                 this.leido = false;
         }
-    }
+}

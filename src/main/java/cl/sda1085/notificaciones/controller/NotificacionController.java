@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -73,15 +74,25 @@ public class NotificacionController {
         return ResponseEntity.ok(notificacionService.obtenerNoLeidasPorUsuario(idUsuario));
     }
 
+    //Contar cuántas notificaciones pendientes tiene un usuario
+    @GetMapping("/usuario/{idUsuario}/conteo")
+    public ResponseEntity<Long> contarPendientes(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(notificacionService.contarPendientesPorUsuario(idUsuario));
+    }
 
+    //Saber si un usuario tiene al menos una notificación sin leer
+    @GetMapping("/usuario/{idUsuario}/existe-pendiente")
+    public ResponseEntity<Boolean> tienePendientes(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(notificacionService.tieneNotificacionesPendientes(idUsuario));
+    }
 
-
-
-
-
-
-
-
+    //Obtener la última notificación recibida por el usuario
+    @GetMapping("/usuario/{idUsuario}/ultima")
+    public ResponseEntity<NotificacionResponseDTO> obtenerUltima(@PathVariable Long idUsuario) {
+        return notificacionService.obtenerUltimaPorUsuario(idUsuario)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
 
     @PatchMapping("/{id}/leer")
     public ResponseEntity<NotificacionResponseDTO> marcarComoLeida(@PathVariable Long id) {

@@ -11,18 +11,18 @@ public interface NotificacionRepository extends JpaRepository <Notificacion, Lon
     //Obtener todas las notificaciones de un usuario
     List<Notificacion> findByIdUsuario (Long idUsuario);
 
-    // Cuenta cuántas notificaciones no leídas tiene un usuario
-    long countByIdUsuarioAndLeidoFalse(Long idUsuario);
-
     //Obtener todas las no leídas
     List <Notificacion> findByLeidoFalse();
-
-    // Retorna true si el usuario tiene al menos una notificación sin leer
-    boolean existsByIdUsuarioAndLeidoFalse(Long idUsuario);
 
     //Obtener las no leídas de un usuario específico
     List<Notificacion> findByIdUsuarioAndLeidoFalse(Long idUsuario);
 
-    // Obtiene la última notificación de un usuario (la más nueva)
+    //Cuenta cuántas notificaciones no leídas tiene un usuario
+    long countByIdUsuarioAndLeidoFalse(Long idUsuario);
+
+    //Retorna true si el usuario tiene al menos una notificación sin leer
+    boolean existsByIdUsuarioAndLeidoFalse(Long idUsuario);
+
+    //Obtiene la última notificación de un usuario (la más nueva)
     Optional<Notificacion> findTopByIdUsuarioOrderByFechaCreacionDesc(Long idUsuario);
 }

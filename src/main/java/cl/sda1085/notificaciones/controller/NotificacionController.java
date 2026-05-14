@@ -15,10 +15,13 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/notificaciones")
-
+@CrossOrigin(origins = "*")
 public class NotificacionController {
 
+    //Conexión con 'service'
     private final NotificacionService notificacionService;
+
+    //CRUD estándar
 
     @GetMapping
     public ResponseEntity<List<NotificacionResponseDTO>> obtenerTodas() {
@@ -33,7 +36,7 @@ public class NotificacionController {
     }
 
     @PostMapping
-    public ResponseEntity<NotificacionResponseDTO> crear(@Valid @RequestBody NotificacionRequestDTO dto) {
+    public ResponseEntity<NotificacionResponseDTO> guardar(@Valid @RequestBody NotificacionRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(notificacionService.guardar(dto));
     }
 
@@ -50,12 +53,35 @@ public class NotificacionController {
         return ResponseEntity.noContent().build();
     }
 
-    //métodos personalizados
+    //CRUD personalizado
 
+    //Obtener todas las notificaciones de un usuario
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<NotificacionResponseDTO>> obtenerPorUsuario(@PathVariable Long idUsuario) {
         return ResponseEntity.ok(notificacionService.obtenerPorUsuario(idUsuario));
     }
+
+    //Obtener todas las no leídas del sistema
+    @GetMapping("/pendientes")
+    public ResponseEntity<List<NotificacionResponseDTO>> obtenerNoLeidas() {
+        return ResponseEntity.ok(notificacionService.obtenerNoLeidas());
+    }
+
+    //Obtener las no leídas de un usuario específico
+    @GetMapping("/usuario/{idUsuario}/pendientes")
+    public ResponseEntity<List<NotificacionResponseDTO>> obtenerPendientesUsuario(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(notificacionService.obtenerNoLeidasPorUsuario(idUsuario));
+    }
+
+
+
+
+
+
+
+
+
+
 
     @PatchMapping("/{id}/leer")
     public ResponseEntity<NotificacionResponseDTO> marcarComoLeida(@PathVariable Long id) {
@@ -64,15 +90,6 @@ public class NotificacionController {
                 .orElseThrow(() -> new NotificacionNotFoundException(id));
     }
 
-    @GetMapping("/pendientes")
-    public ResponseEntity<List<NotificacionResponseDTO>> obtenerNoLeidas() {
-        return ResponseEntity.ok(notificacionService.obtenerNoLeidas());
-    }
-
-    @GetMapping("/usuario/{idUsuario}/pendientes")
-    public ResponseEntity<List<NotificacionResponseDTO>> obtenerPendientesUsuario(@PathVariable Long idUsuario) {
-        return ResponseEntity.ok(notificacionService.obtenerNoLeidasPorUsuario(idUsuario));
-    }
 
 
 

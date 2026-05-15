@@ -23,7 +23,7 @@ public class Notificacion {
         private Long idUsuario;
 
         @Column(nullable = false, length = 50)
-        private String tipo;  //Se mantiene por la lógica de los últimos commits
+        private String tipo;
 
         @Column(nullable = false, length = 255)
         private String mensaje;

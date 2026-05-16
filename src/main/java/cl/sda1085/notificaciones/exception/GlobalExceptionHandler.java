@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
     }
 
-    //Manejo de Excepciones Genéricas (500)
+    //Manejo de excepciones genéricas (500)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
         Map<String, Object> error = new HashMap<>();

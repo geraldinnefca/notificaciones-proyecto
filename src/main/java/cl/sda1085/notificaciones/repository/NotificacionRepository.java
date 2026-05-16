@@ -2,10 +2,12 @@ package cl.sda1085.notificaciones.repository;
 
 import cl.sda1085.notificaciones.model.Notificacion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface NotificacionRepository extends JpaRepository <Notificacion, Long> {
 
     //Obtener todas las notificaciones de un usuario

@@ -32,7 +32,10 @@ public class NotificacionService {
         );
     }
 
+
+    //------------------------------
     //CRUD estándar
+    //------------------------------
 
     //Obtener todas las notificaciones
     public List <NotificacionResponseDTO> obtenerTodas(){
@@ -90,7 +93,9 @@ public class NotificacionService {
     }
 
 
+    //------------------------------
     //CRUD personalizado
+    //------------------------------
 
     //Obtener notificación por usuario
     public List<NotificacionResponseDTO> obtenerPorUsuario(Long idUsuario) {

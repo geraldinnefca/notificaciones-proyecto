@@ -21,7 +21,10 @@ public class NotificacionController {
     //Conexión con 'service'
     private final NotificacionService notificacionService;
 
+
+    //------------------------------
     //CRUD estándar
+    //------------------------------
 
     //Obtener todas las notificaciones
     @GetMapping
@@ -58,7 +61,10 @@ public class NotificacionController {
         return ResponseEntity.noContent().build();
     }
 
+
+    //------------------------------
     //CRUD personalizado
+    //------------------------------
 
     //Obtener todas las notificaciones de un usuario
     @GetMapping("/usuario/{idUsuario}")
